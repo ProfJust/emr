@@ -19,7 +19,7 @@ msgsBaseVel = rosmessage(pubVel);
 %---- Karte laden ----
 mapInflated = load('WillowGarageOccupancyGrid_GIMP.mat');
 % Aufblasen (inflate) der Map
-youBotRadiusGrid = 11; %Aufblasen auf youBot-Breite default 15
+youBotRadiusGrid = 15; %Aufblasen auf youBot-Breite default 15
 % inflates each occupied position by the radius given in number of cells.
 inflate(mapInflated.map,youBotRadiusGrid,'grid');
 show(mapInflated.map);
