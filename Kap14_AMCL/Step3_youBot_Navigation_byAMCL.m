@@ -27,11 +27,14 @@
 %Version vom 24.06.2019 edited by OJ
 %------------------------------------------
 %% ROS INITIALIZATION - Subscriber | Publisher
-rosshutdown;
+%rosshutdown;
 close all; %figures
 clear; %workspace
 %OJ HomeOffice
-rosinit('http://192.168.1.142:11311','NodeName','/RoboLabHome')
+%Lokal
+if robotics.ros.internal.Global.isNodeActive == false
+    rosinit('http://127.0.0.1:11311','NodeName','/RoboLabHome')
+end
 %robotik.bocholt@w-hs.de
 %rosinit('http://192.168.0.99:11311','NodeName','/MatLabHome')
 %-- ROS Subscriber --
@@ -48,7 +51,7 @@ msgsBaseVel = rosmessage(pubVel);
 %usedMapName = 'WillowGarageOccupancyGrid2.mat'
 usedMapName ='WillowGarageOccupancyGrid_GIMP.mat'
 mapOccGrid = load(usedMapName);
-show(mapOccGrid.map);
+%show(mapOccGrid.map);
 % Check whether mapInflated is already available
 if exist('mapInflated','var')
     disp('## Map is up to date ##');
@@ -56,7 +59,7 @@ else
     disp('## Map Inflation ##');
     tic;
     %Define youBotSize
-    youbotRadiusGrid =3; % 33;
+    youbotRadiusGrid = 3; % 33;
     %MAP File laden
     mapInflated = load(usedMapName);
     %Inflate to avoid obstacles
@@ -113,7 +116,7 @@ disp('Move youBot with rqt or teleop to help estimating position')
 scanCnt=0;
 %--------------------------
 while cntUpdate < numUpdate
-    scanCnt=scanCnt+1
+    scanCnt=scanCnt+1;
     % Receive laser scan and odometry message.
     scanMsg = receive(subScan);
     % Create lidarScan object to pass to the AMCL object.
@@ -142,8 +145,9 @@ while cntUpdate < numUpdate
             set(gca,'Ycolor',[1 0 0]);
             set(gca,'LineWidth', 2); % Line Width
         end
-    end    
-    %disp(estimatedCovariance(3, 3))
+    end   
+    disp('estimatedCovariance: ');
+    disp(estimatedCovariance(3, 3))
     if estimatedCovariance(3, 3)<= 0.065 % probably equals good estimation, but wasn't tested thoroughly
         disp('#### !!!! Pose found ####');
         break;
@@ -155,6 +159,13 @@ disp('reale Pose (Odometry)');
 disp(pose);
 disp('Estimated Pose (AMCL)');
 disp(estimatedPose);
+
+
+% Stop Robot
+msgsBaseVel.Linear.X = 0;
+msgsBaseVel.Linear.Y = 0;
+msgsBaseVel.Angular.Z = 0;
+send(pubVel,msgsBaseVel);
 
 
 

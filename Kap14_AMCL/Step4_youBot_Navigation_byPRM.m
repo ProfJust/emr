@@ -1,4 +1,4 @@
-%P7_03_Gazebo_youBot_PRM_PurePursuitSpezial_SS18.m
+% Step4_youBot_Navigation_byPRM.m
 %file:///D:/Program%20Files/MATLAB/R2016b/help/robotics/examples/path-following-for-a-differential-drive-robot.html
 %---------------------------------------------------------------
 % starten des zugehoerigen Python-Skriptes fuer Gazebo:
@@ -7,9 +7,13 @@
 %--------------------------------------------------------------
 % 24.06.2019
 %---------------------------------------------------------------
-rosshutdown;
+%rosshutdown;
+%Lokal
+if robotics.ros.internal.Global.isNodeActive == false
+    rosinit('http://127.0.0.1:11311','NodeName','/RoboLabHome')
+end
 %OJ HomeOffice
-rosinit('http://192.168.1.142:11311','NodeName','/RoboLabHome')
+%rosinit('http://192.168.1.142:11311','NodeName','/RoboLabHome')
 %WHS
 %rosinit('http://192.168.0.99:11311','NodeName','/MatLabHome')
 subOdom = rossubscriber ('odom', 'nav_msgs/Odometry');
@@ -20,6 +24,7 @@ msgsBaseVel = rosmessage(pubVel);
 mapInflated = load('WillowGarageOccupancyGrid_GIMP.mat');
 % Aufblasen (inflate) der Map
 youBotRadiusGrid = 15; %Aufblasen auf youBot-Breite default 15
+disp('Inflate Map ...');
 % inflates each occupied position by the radius given in number of cells.
 inflate(mapInflated.map,youBotRadiusGrid,'grid');
 show(mapInflated.map);
@@ -90,6 +95,7 @@ end
 disp('##### Ziel erreicht ####');
 disp(robotCurrentPose);
 estimatedPose = robotCurrentPose;
+beep
 %Robot Anhalten
 msgsBaseVel.Linear.X=0;
 msgsBaseVel.Linear.Y=0;
