@@ -42,8 +42,8 @@ sudo apt-get install ros-melodic-amcl -y
 sudo apt-get install ros-melodic-move-base -y
 
 cd ~/catkin_ws/src
-echo -e "\033[34m Erstelle catkin_pkg \033[0m"
-catkin_create_pkg emr std_msgs rospy roscpp
+#echo -e "\033[34m Erstelle catkin_pkg \033[0m"
+#catkin_create_pkg emr std_msgs rospy roscpp
 
 echo -e "\033[34m Aktualisiere alle Abhaengigkeiten der ROS-Pakete \033[0m"
 rosdep update
@@ -65,17 +65,16 @@ cd ~/catkin_ws/src/youbot_navigation/youbot_navigation_common/
 echo "## by OJ since ros.h was not found" >> CMakeLists.txt
 echo "INCLUDE_DIRECTORIES(" >> CMakeLists.txt
 echo "include" >> CMakeLists.txt
+#Zeile Funtkioniert nicht
 echo "${catkin_INCLUDE_DIRS}" >> CMakeLists.txt
 echo ")" >> CMakeLists.txt
 
 
 
-echo -e "\033[34m to do:   $ cd ~/catkin_ws/  ...   catkin_make \033[0m"
-
+#echo -e "\033[34m to do:   $ cd ~/catkin_ws/  ...   catkin_make \033[0m"
 cd ~/catkin_ws/
 catkin_make
 
 echo -e "\033[34m EMR - SS20 - Workspace is installed - have fun!  \033[0m"
-
 echo -e "\033[32m $ roslaunch emr youbot_emr_simulation.launch \033[0m"
 
