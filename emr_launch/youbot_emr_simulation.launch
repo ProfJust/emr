@@ -6,8 +6,12 @@
   
 
   <include file="$(find youbot_moveit_config)/launch/move_group.launch" />
+ <include file="$(find youbot_navigation_global)/launch/move_base_global.launch" />
 
-  <include file="$(find youbot_navigation)/launch/navigation_no_map.launch" />
+  <include file="$(find youbot_navigation_global)/launch/2dslam.launch" />
+
+
+ <!-- <include file="$(find youbot_navigation)/launch/navigation_no_map.launch" />  -->
 
   <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch" />
 
