@@ -1,7 +1,7 @@
 <launch>
 
   <include file="$(find youbot_gazebo_robot)/launch/youbot.launch">
-    <arg name="world" value="tower_of_hanoi" />
+    <arg name="world" value="robocup_at_work_2012" />
   </include>
   
 
