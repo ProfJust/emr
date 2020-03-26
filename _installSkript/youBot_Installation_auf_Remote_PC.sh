@@ -65,8 +65,8 @@ cd ~/catkin_ws/src/youbot_navigation/youbot_navigation_common/
 echo "## by OJ since ros.h was not found" >> CMakeLists.txt
 echo "INCLUDE_DIRECTORIES(" >> CMakeLists.txt
 echo "include" >> CMakeLists.txt
-#Zeile Funtkioniert nicht
-echo "${catkin_INCLUDE_DIRS}" >> CMakeLists.txt
+#Avoid variable substitution with /var or 'var '
+echo "\${catkin_INCLUDE_DIRS}" >> CMakeLists.txt
 echo ")" >> CMakeLists.txt
 
 
