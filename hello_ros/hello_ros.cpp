@@ -1,4 +1,4 @@
-// hello_world.cpp
+// hello_ros.cpp
 // by OJ at 27-02-2018
 //---------------------------------
 #include </opt/ros/kinetic/include/ros/ros.h>
