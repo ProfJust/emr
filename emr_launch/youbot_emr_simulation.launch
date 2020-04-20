@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 
   <include file="$(find youbot_gazebo_robot)/launch/youbot.launch">
@@ -5,14 +6,16 @@
   </include>
   
 
-  <include file="$(find youbot_moveit_config)/launch/move_group.launch" />
-  <include file="$(find youbot_navigation_global)/launch/move_base_global.launch" />
+ <include file="$(find youbot_moveit_config)/launch/move_group.launch" />
+ <include file="$(find youbot_navigation_global)/launch/move_base_global.launch" />
 
-  <include file="$(find youbot_navigation_global)/launch/2dslam.launch" />  
+  <include file="$(find youbot_navigation_global)/launch/2dslam.launch" />
+
+
   <!-- <include file="$(find youbot_navigation)/launch/navigation_no_map.launch" />  -->
 
-  <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch" />
+  <!-- <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch" /> -->
 
-  <node name="rviz" type="rviz" pkg="rviz" args="-d $(find emr)_rviz_configs/youBot_emr_slam.rviz" />
-  <node pkg="rqt_reconfigure" name="rqt_reconfigure" type="rqt_reconfigure" output="screen"> </node>
+  <node name="rviz" type="rviz" pkg="rviz" args="-d $(find youbot_launch)/config/motion_planning.rviz" />
+
 </launch>
