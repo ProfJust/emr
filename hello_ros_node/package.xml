@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hello_ros_node</name>
+  <version>0.1.0</version>
+  <description>EMR first ROS-Node</description>
+  <maintainer email="olaf.just@w-hs.de">Olaf Just</maintainer>
+  <license>BSD</license>
+  <author email="olaf.just@w-hs.de">Olaf Just</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>geometry_msgs</depend>
+</package>
