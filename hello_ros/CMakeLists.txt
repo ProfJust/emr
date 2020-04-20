@@ -135,7 +135,7 @@ include_directories( ${catkin_INCLUDE_DIRS} )
 # add_executable(${PROJECT_NAME}_node src/hello_world_node.cpp)
 
 # added  by OJ
-add_executable(hello_world hello_world.cpp)
+add_executable(hello_ros hello_ros.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
