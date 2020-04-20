@@ -12,8 +12,6 @@
 // kompilieren mit $ catkin_make
 // starten mit rosrum hello_ros_node hello_ros_node
 //
-// Bisher klappt es nicht, wenn der Ordner nicht aus emr 
-// verschoben wird, CMakeList aendern??
 //---------------------------------------------------------
 #include </opt/ros/melodic/include/ros/ros.h>
 
