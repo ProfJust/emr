@@ -11,7 +11,6 @@
 // Ordner "hello_ros_node" in den catkin_ws/src verschieben
 // kompilieren mit $ catkin_make
 // starten mit rosrum hello_ros_node hello_ros_node
-//
 //---------------------------------------------------------
 #include </opt/ros/melodic/include/ros/ros.h>
 

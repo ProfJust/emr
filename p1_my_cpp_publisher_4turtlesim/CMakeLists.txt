@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(hello_ros_node)
+project(p1_my_cpp_publisher_4turtlesim)
 
 ## Use C++11
 add_definitions(--std=c++11)
@@ -50,6 +50,5 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
-
 
 
