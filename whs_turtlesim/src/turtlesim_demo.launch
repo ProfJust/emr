@@ -33,7 +33,7 @@
 
 <!-- Besser: Shell Skript starten -->
 <!--<node pkg="turtle_sim_demo" type="set_ROS_IP_localhost.sh" name="set_ROS_IP_localhost" output="screen" /> -->
-<node pkg="turtle_sim_demo" type="my_first_shell_script.sh" name="teleop_node" output="screen" />
-<node pkg="turtle_sim_demo" type="rqt_script.sh" name="rqt_node" output="screen" />  <!-- rqt -->
+<node pkg="whs_turtlesim" type="my_first_shell_script.sh" name="teleop_node" output="screen" />
+<node pkg="whs_turtlesim" type="rqt_script.sh" name="rqt_node" output="screen" />  <!-- rqt -->
 
 </launch>
