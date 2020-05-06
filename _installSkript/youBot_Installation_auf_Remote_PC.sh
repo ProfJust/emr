@@ -40,6 +40,7 @@ sudo apt-get install ros-melodic-map-server -y
 sudo apt-get install ros-melodic-slam-gmapping -y
 sudo apt-get install ros-melodic-amcl -y
 sudo apt-get install ros-melodic-move-base -y
+sudo apt-get install ros-melodic-pr2-msgs -y
 
 cd ~/catkin_ws/src
 #echo -e "\033[34m Erstelle catkin_pkg \033[0m"
