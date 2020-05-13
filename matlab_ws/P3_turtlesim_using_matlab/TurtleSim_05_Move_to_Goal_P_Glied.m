@@ -7,7 +7,8 @@
 % Wichtig: zunächst ROS-Node anmelden mit
 % IP des ROS-Master-Rechners hier eintragen
 rosshutdown;
-rosinit('http://192.168.2.150:11311','NodeName','/Acer')
+rosinit; % localhost
+% rosinit('http://192.168.2.150:11311','NodeName','/Acer')
 % Büro WHS - Windows PC rosinit('http://WHS-B5-0-09:11311/','NodeName','/Acer')
 
 %--- Anmelden des Topics beim ROS-Master -----
