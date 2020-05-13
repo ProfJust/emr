@@ -3,31 +3,30 @@
 % Die Turtle mit Konsolen-Befehlen im Matlab CommandWindow steuern
 % Bewegt sich zu einem Ziel in Weltkoordinaten
 %------------------------------------------------------------------
+% EMR - 13.5.2020
+%---------------------------------------------------------
 
-% Wichtig: zunächst ROS-Node anmelden mit
-% IP des ROS-Master-Rechners hier eintragen
-rosshutdown;
-rosinit; % localhost
-% rosinit('http://192.168.2.150:11311','NodeName','/Acer')
-% Büro WHS - Windows PC rosinit('http://WHS-B5-0-09:11311/','NodeName','/Acer')
+ROS_Node_init_localhost;
 
-%--- Anmelden des Topics beim ROS-Master -----
-myPublisher = rospublisher ('turtle1/cmd_vel', 'geometry_msgs/Twist');
+
+%%--- Anmelden des Topics beim ROS-Master -----
+    myPublisher = rospublisher ('turtle1/cmd_vel', 'geometry_msgs/Twist');
 % Subscriber anmelden
-mySub = rossubscriber ('/turtle1/pose');
+    mySub = rossubscriber ('/turtle1/pose');
 %---  zunächst leere Message in diesem Topic erzeugen --
-myMsg = rosmessage(myPublisher);
+    myMsg = rosmessage(myPublisher);
 
 %---- Globale Variablen ----
 epsilon = 0.1;  % Umgebung der Soll_Position
 moveFlag = true; % Turtle in Bewegung?
 Kx = 0.4; % Proportionalkonstante vx = Kv * Abstand
 Kz = 2.0; % Proportionalkonstante vz = Kz * distTheta
+
 %---- Get Goal from User ----
 goalX = str2double(input('Ziel X: ','s')); % Benutzereingabe
 goalY = str2double(input('Ziel Y: ','s')); % Benutzereingabe
 
-%--- Move to Goal ----
+%%--- Move to Goal ----
 while (moveFlag)
     %--- aktuelle Pose empfangen ---
     poseX     = mySub.LatestMessage.X;
