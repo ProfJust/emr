@@ -36,6 +36,7 @@ export ROS_HOSTNAME=127.0.0.1
 # global => real youBot
 # export ROS_MASTER_URI=http://192.168.0.40:11311
 # export ROS_HOSTNAME=192.168.0.41
+export LC_NUMERIC=en_US.UTF-8
 ###############################################
 " >> .bashrc
 #echo "export PYTHONPATH=$PYTHONPATH:$ROS_ROOT/core/roslib/src" >> .bashrc
