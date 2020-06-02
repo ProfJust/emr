@@ -36,7 +36,7 @@ plot(path(:,1), path(:,2),'k--d')
 xlim([0 13])
 ylim([0 13])
 
-% Define the path following controller
+%% Define the path following controller
 % Nutze den PurePursuit-Algorithmus
 controller = robotics.PurePursuit
 controller.Waypoints = path;
@@ -47,7 +47,7 @@ controller.LookaheadDistance = 0.5;
 % Using the path following controller, drive the robot over the desired waypoints
 goalRadius = 0.1;  % zu erreichender Radius um den Zielpunkt
 distanceToGoal = norm(robotCurrentLocation - robotGoal);  % aktueller Abstand zum Ziel
-controlRate = robotics.Rate(10) ;%Hz
+controlRate = robotics.Rate(10); %Hz
 
 %%
 while( distanceToGoal > goalRadius )
