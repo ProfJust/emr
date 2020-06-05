@@ -63,8 +63,8 @@ show( prm, 'Map', 'on', 'Roadmap', 'on');
 
 %% Pfad folgen mit PurePursuit-Controller
     controller = robotics.PurePursuit;
-    controller.DesiredLinearVelocity = 0.3;
-    controller.MaxAngularVelocity = 0.3;  % slower
+    controller.DesiredLinearVelocity = 0.4;
+    controller.MaxAngularVelocity = 0.4;  % slower
     controller.LookaheadDistance = 0.5;   % shorter
     controller.Waypoints = path;
 
