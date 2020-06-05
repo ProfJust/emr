@@ -5,6 +5,7 @@ Anleitung zum Implementieren des Gazebomodells der Arena:
 - git clone emr/emr_worlds
 - catkin_make
 - Ordner des Gazebo Modells "arena_robotiklabor" kopieren und am Zielcomputer eingefügen in: ~/.gazebo/models
+sonst Error Code: 11 Msg: Unable to find uri[model://arena_robotiklabor]
 
 
 Gazebo youBot in der Arena:
