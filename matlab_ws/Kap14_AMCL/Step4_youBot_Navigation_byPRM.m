@@ -13,10 +13,10 @@ pubVel  = rospublisher  ('cmd_vel', 'geometry_msgs/Twist');
 msgsBaseVel = rosmessage(pubVel);
 
 %% ---- Karte laden ----
-goalRadius = 0.2;
+goalRadius = 0.5;
 mapInflated = load('myArenaMap.mat');
 % Aufblasen (inflate) der Map
-youBotRadiusGrid = 8; %Aufblasen auf youBot-Breite default 15
+youBotRadiusGrid = 9; %Aufblasen auf youBot-Breite default 15
 disp('Inflate Map ...');
 inflate(mapInflated.map,youBotRadiusGrid,'grid');
 show(mapInflated.map);
