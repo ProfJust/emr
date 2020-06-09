@@ -13,6 +13,7 @@ pubVel  = rospublisher  ('cmd_vel', 'geometry_msgs/Twist');
 msgsBaseVel = rosmessage(pubVel);
 
 %% ---- Karte laden ----
+goalRadius = 0.2;
 mapInflated = load('myArenaMap.mat');
 % Aufblasen (inflate) der Map
 youBotRadiusGrid = 8; %Aufblasen auf youBot-Breite default 15
@@ -24,7 +25,7 @@ hold on;
  posedata_quat = receive(subOdom,10);
 % pose in Euler umrechnen (mit Versatz)
 % estimated Pose aus Step3 liegt im Workspace
-estimatedPose = youBot_Pose_Quat_2_Eul(posedata_quat);
+estimatedPose = youBot_Pose_Quat_2_Eul(posedata_quat); %ohne Versatz rechnen !!
 if not(exist('estimatedPose'))
     estimatedPose = [0 0 0];
 end
@@ -61,7 +62,7 @@ robotCurrentLocation = path(1,:);
 robotGoal = path(end,:);
 robotCurrentPose = [robotCurrentLocation initialOrientation];
 distanceToGoal = norm(robotCurrentLocation - robotGoal);
-goalRadius = 0.5;
+
 disp('Fahre PRM-Pfad ...');
 
 %% -------------------------------------------------------------------
@@ -71,12 +72,9 @@ while( distanceToGoal > goalRadius )
      % pose in Euler umrechnen (mit Versatz)
      robotCurrentPose = youBot_Pose_Quat_2_Eul(posedata_quat);
     % Compute the controller outputs, i.e., the inputs to the robot
-    %[v, omega] = controller(robot.getRobotPose);
-    %#################  verbesserter PurePursuit ####################
-    [v_x, v_y, omega] = step_PurePursuit_youbot(controller, robotCurrentPose);
+     [v_x, v_y, omega] = step_PurePursuit_youbot(controller, robotCurrentPose);
     
-    % Simulate the robot using the controller outputs
-    % drive(robot, v, omega);
+    % Drive the robot using the controller outputs
     msgsBaseVel.Linear.X  = v_x;
     msgsBaseVel.Linear.Y  = v_y;
     msgsBaseVel.Angular.Z = omega;
