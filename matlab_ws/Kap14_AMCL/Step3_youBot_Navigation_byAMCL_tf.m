@@ -57,9 +57,9 @@ numUpdate = 90; % Max. Anzahl der AMCL Update Zyklen
     rangeFinderModel.SensorLimits = [0.45 double(scanMsg.RangeMax)];  % 5.6 im gazebo youBot
     rangeFinderModel.NumBeams = numel(scanMsg.Ranges); %Gazebo 150 , real 726
     % Versatz des Laserscanners zur Drehachse berücksichtigen
-    %% alt rangeFinderModel.SensorPose = [0.338 0 0];
     
-    % Query the Transformation Tree (tf tree) in ROS.
+    % alt rangeFinderModel.SensorPose = [0.338 0 0];    
+    %% Query the Transformation Tree (tf tree) in ROS.
     tftree = rostf
     waitForTransform(tftree,'/base_link','/base_laser_front_link');
     sensorTransform = getTransform(tftree,'/base_link', '/base_laser_front_link');
@@ -75,7 +75,7 @@ numUpdate = 90; % Max. Anzahl der AMCL Update Zyklen
     rangeFinderModel.SensorPose = ...
         [sensorTransform.Transform.Translation.X sensorTransform.Transform.Translation.Y laserRotation(1)];
 
-%-- Initialize AMCL Object --
+%% -- Initialize AMCL Object --
     amcl = robotics.MonteCarloLocalization;
     amcl.MotionModel = odometryModel;
     amcl.SensorModel = rangeFinderModel;
@@ -120,8 +120,9 @@ while cntUpdate < numUpdate
     scan = lidarScan(scanMsg); 
     % OdomPose als erste Schätzung holen und speichern
     posedata_quat = receive(subOdom,10);
-     % pose in Euler umrechnen (mit Versatz)
-    pose = youBot_Pose_Quat_2_Eul(posedata_quat);
+    %% Quaternionen-Pose in Euler umrechnen ...
+    % (ohne Versatz, der wird bereits im rangeFinderModel berücksichtigt)    
+    pose = youBot_Pose_Quat_2_Eul(posedata_quat); 
      
     % Update estimated robot's pose and covariance using new odometry and
     % sensor readings
