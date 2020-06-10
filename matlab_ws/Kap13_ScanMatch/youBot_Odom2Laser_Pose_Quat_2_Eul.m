@@ -20,7 +20,7 @@ function poseEuler = youBot_Odom2Laser_Pose_Quat_2_Eul(posedata_quat)
     %xY-Daten des youBot sind ist nicht die exakte Funktion des
     %Hokuyo, Achse des Scanners ca 30 cm in X-Richtung
     % L�nge Base 58cm, Tr�gerblech - Mitte LAser ca. 4 cm
-    %%versatz = 0.338; % 0.58/2 +0.05;
+    versatz = 0.338; % 0.58/2 +0.05;
   
     poseX = posedata_quat.Pose.Pose.Position.X  + cos(theta)*versatz; 
     poseY = posedata_quat.Pose.Pose.Position.Y  + sin(theta)*versatz; 
