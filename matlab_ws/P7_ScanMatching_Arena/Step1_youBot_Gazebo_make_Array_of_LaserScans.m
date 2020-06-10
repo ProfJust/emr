@@ -47,7 +47,7 @@ while i< NumbOfScans
     %% pose holen und speichern
     posedata_quat = receive(subOdom,10);
     % pose in Euler umrechnen (mit Versatz)
-    pose = youBot_Pose_Quat_2_Eul(posedata_quat);
+    pose = youBot_Odom2Laser_Pose_Quat_2_Eul(posedata_quat);
     
     % scan aus ROS holen und speichern
     scandata = receive(subScan,10);
