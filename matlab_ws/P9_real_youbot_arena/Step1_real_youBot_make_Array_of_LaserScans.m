@@ -20,7 +20,7 @@ clear; %workspace
 try
     rosnode list
 catch exp   % Error from rosnode list
-    %  realer youBot
+    %  realer youBot03
     rosinit('http://192.168.0.30:11311','NodeName','/RoboLabHome2')  
 end
 
@@ -43,7 +43,8 @@ NumbOfScans = input(promptStr);
 scandata = receive(subScan,10);
 angleMin = scandata.AngleMin;
 angleMax = scandata.AngleMax;
-angles = linspace(angleMin, angleMax, 489); %150
+numbOfAngles = numel(scandata.Ranges); %Gazebo 150 , real 726
+angles = linspace(angleMin, angleMax, numbOfAngles);
 rangeMax = cast(scandata.RangeMax , 'double');
 
 i=0;
@@ -72,7 +73,7 @@ end
 % arrayNameStr = input(promptStr, 's') +'.mat';
 % save(arrayNameStr, LaserScans)
 
-disp('RMB auf Workkspace/LaserScans, save as(''mySavedScans.mat''); => Datei')
+disp('RMB auf Workkspace/LaserScans, save as(''mySavedScans.mat'') => Datei')
 
 
 
