@@ -63,10 +63,7 @@ sudo apt-get install ros-kinetic-moveit* -y
 sudo apt-get install ros-kinetic-position-controllers -y
 sudo apt-get install ros-kinetic-joint-state-controller -y
 sudo apt-get install ros-kinetic-ros-controllers -y
-
-
-
-
+sudo apt-get install ros-kinetic-gazebo-ros-control -y
 
 
 cd ~/catkin_ws/src
