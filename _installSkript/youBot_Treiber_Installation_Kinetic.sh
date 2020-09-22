@@ -59,7 +59,7 @@ sudo apt-get install ros-kinetic-rqt-joint-trajectory-controller -y
 sudo apt-get install ros-kinetic-ros-control -y
 sudo apt-get install ros-kinetic-astra-camera -y
 sudo apt-get install ros-kinetic-astra-launch -y
-sudo apt-get install ros-kinetic-moveit-msgs -y
+sudo apt-get install ros-kinetic-moveit* -y
 
 
 
