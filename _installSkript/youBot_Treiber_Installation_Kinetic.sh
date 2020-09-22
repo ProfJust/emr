@@ -101,5 +101,6 @@ cd ~/catkin_ws/
 catkin_make
 
 echo -e "\033[34m EMR - SS20 - Workspace is installed - have fun!  \033[0m"
-echo -e "\033[32m $ roslaunch emr youbot_emr_simulation.launch \033[0m"
+echo -e "\033[32m $ roslaunch emr_youbot youbot_emr_simulation_complete.launch \033[0m"
+echo -e "\033[32m To start Gazebo World also use =>  $ gzclient \033[0m"
 
