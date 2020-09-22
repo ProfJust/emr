@@ -60,6 +60,9 @@ sudo apt-get install ros-kinetic-ros-control -y
 sudo apt-get install ros-kinetic-astra-camera -y
 sudo apt-get install ros-kinetic-astra-launch -y
 sudo apt-get install ros-kinetic-moveit* -y
+sudo apt-get install ros-kinetic-position-controllers
+sudo apt-get install ros-kinetic-joint-state-controller
+
 
 
 
