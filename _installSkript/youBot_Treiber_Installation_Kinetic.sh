@@ -65,7 +65,6 @@ sudo apt-get install ros-kinetic-joint-state-controller -y
 sudo apt-get install ros-kinetic-ros-controllers -y
 sudo apt-get install ros-kinetic-gazebo-ros-control -y
 
-
 cd ~/catkin_ws/src
 #echo -e "\033[34m Erstelle catkin_pkg \033[0m"
 #catkin_create_pkg emr std_msgs rospy roscpp
