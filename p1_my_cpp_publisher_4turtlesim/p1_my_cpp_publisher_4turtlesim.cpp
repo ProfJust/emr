@@ -4,7 +4,7 @@
 // Modul Embedded Robotics -Prof. O. Just
 //------------------------------------------
 // p1_my_cpp_publisher_4turtlesim
-// Version vom 21.04.2020
+// Version vom 14.04.2021
 //------------------------------------------
 // ROS -Publisher für die Steuerung der
 // Turtle-Bot Simulation
