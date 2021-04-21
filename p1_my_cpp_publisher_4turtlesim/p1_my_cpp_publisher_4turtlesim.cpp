@@ -27,26 +27,29 @@ int main (int argc, char **argv){
 	// Eine eigenen Knoten instanzieren
 	ros::NodeHandle myNh; 
 	// Die Template-Funktion mit dem Datentyp der Parameter versehen
-	ros::Publisher myPub = myNh.advertise<geometry_msgs::Twist>("turtle1/cmd_vel",1000);  
+	ros::Publisher myPub = myNh.advertise<geometry_msgs::Twist>("/cmd_vel",1000);  
 	ros::Rate rate(2); // Senderate 2Hz
+	// Instanziere Message
+		geometry_msgs::Twist myMsg;
+	
+	printf(" WASD Q - Steueung fuer den Robot0");
 
-	srand(time(0)); //Zufallsgenerator seeden
-
-	while(ros::ok()){  //Endlosschleife bis rosshutdown
-		// Instanziere Message
-		geometry_msgs:: Twist myMsg;
+	while(ros::ok()){  //Endlosschleife bis rosshutdown	
 				
-		myMsg.linear.x  =     double(rand())/double(RAND_MAX);	
-		myMsg.angular.z = 2 * double(rand())/double(RAND_MAX);
-
+		int key = getchar();  // mit Enter getch() funktioniert nicht
+		if(key >32) printf("\n got \" %c \" - key  ",key);
+		switch(key){
+			case 'w': myMsg.linear.x  = 0.5;  break;
+			case 's': myMsg.linear.x  = -0.5; break;
+			case 'a': myMsg.angular.z = 0.5; break;
+			case 'd': myMsg.angular.z = -0.5; break;
+			case 'q': myMsg.angular.z = 0.0; 
+				  myMsg.linear.x  = 0.0; 
+				  break;
+		}
 		// senden der msg
 		myPub.publish(myMsg);
 
-		//Konsolen-Ausgabe von rosout (wie printf())
-		ROS_INFO("Sende Zufalls-Werte für velocity linear %f angular %f",
-			myMsg.linear.x , 
-			myMsg.angular.z);
-		
 		// Warte bis zur nächsten Sendung
 		rate.sleep();
 	}
@@ -58,6 +61,7 @@ int main (int argc, char **argv){
 //-----------------------------------------------------------
 #include <termio.h>
 int getch(void){
+// neue Version für Focal Fossa nötig? 
   struct termios term, oterm;
   int fd = 0;
   int c = 0;
