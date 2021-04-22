@@ -36,6 +36,8 @@ echo "## IP dieses Rechners " >> .bashrc
 echo "export ROS_HOSTNAME=127.0.0.1" >> ~/.bashrc
 echo "# export ROS_HOSTNAME=192.168.0.40" >> ~/.bashrc
 echo "### Ende ROS - Umgebungsvariablen ###" >> ~/.bashrc
+echo "# Matlab - Canberra Pfad setzen " >> ~/.bashrc
+echo "export GTK_PATH=/usr/lib/x86_64-linux-gnu/gtk-2.0" >> ~/.bashrc
 source ~/.bashrc # Damit source funktioniert, muss das Skript mit Bash und nicht mit SH ausgefuehrt werden
 
 echo -e "\033[42m ---------- Installiere Dependencies und Buildtools ------------ \033[0m "
