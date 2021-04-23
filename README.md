@@ -48,4 +48,4 @@ starten können
 
 >$ roslaunch emr_worlds youbot_arena.launch
 
-![GitHub Logo](/images/logo.png)
+![youBot](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.generationrobots.com%2Fde%2F402093-kuka-youbot-omnidirektionaler-mobiler-roboter-mit-arm.html&psig=AOvVaw2-b23hkNNW80ZMVjMjBubW&ust=1619258433527000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDJv--NlPACFQAAAAAdAAAAABAE)
