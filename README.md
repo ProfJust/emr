@@ -48,4 +48,4 @@ starten können
 
 >$ roslaunch emr_worlds youbot_arena.launch
 
-![youBot](https://www.researchgate.net/profile/Steven-Bohez/publication/315096174/figure/fig1/AS:472375788609536@1489634572225/Our-real-setup-a-with-a-Kuka-Youbot-in-a-rectangular-cage-equipped-with-a-Hokuyo.png)
+![youBot](https://upload.wikimedia.org/wikipedia/commons/5/59/KUKA_youBot.jpg)
