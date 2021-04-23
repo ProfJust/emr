@@ -6,8 +6,8 @@
 % Start a ROS master in a Shell   $roscore
 % Start TurtleSim in a secomd Shell $rosrun turtlesim turtlesim_node
 %----------------------------------------------------
-%rosshutdown() %Knoten runterfahren, falls noch aktiv
-%rosinit()
+rosshutdown() %Knoten runterfahren, falls noch aktiv
+rosinit()
 
 % nur Windows: setenv('ROS_IP','192.168.1.144') % setzen der IP dieses Rechners
 
