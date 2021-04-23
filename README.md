@@ -6,8 +6,7 @@ als erstes einen catkin-Workspace Ordner erstellen
 
 Terminal öffnen mit STRG+ALT+T. Hinter dem Prompt $ die Befehle eingeben
 
->$ mkdir catkin_ws
-
+<$ mkdir catkin_ws>
 >$ cd catkin_ws
 
 >$ mkdir src
