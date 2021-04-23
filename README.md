@@ -17,4 +17,4 @@ $ chmod +x edit_bashrc_for_emr.sh
 
 $ ./edit_bashrc_for_emr.sh 
 
-$ roslaunch emr_worlds youbot_arena
+$ roslaunch emr_worlds youbot_arena.launch
