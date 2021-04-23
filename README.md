@@ -6,9 +6,9 @@ als erstes einen catkin-Workspace Ordner erstellen
 
 Terminal öffnen mit STRG+ALT+T. Hinter dem Prompt $ die Befehle eingeben
 
-$ mkdir catkin_ws
-$ cd catkin_ws
-$ mkdir src
+>$ mkdir catkin_ws
+>$ cd catkin_ws
+>$ mkdir src
 
 Klone das Repositorium nach catkin_ws/src
 $ cd catkin_ws/src/
