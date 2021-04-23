@@ -11,7 +11,8 @@ subOdom = rossubscriber ('odom', 'nav_msgs/Odometry');
 
 %% ----- map erstellen --------------
 %10m x 10m mit 50 Werten pro m => 2cm Raster
-    map = robotics.OccupancyGrid(20,20,50);
+    %map = robotics.OccupancyGrid(20,20,50);
+    map = occupancyMap(20,20,50);
 %Startposition des youBot  % Offset-Map - Pose youBot
     map.GridLocationInWorld = [-6,-6];
 %% ----- Laserscan Daten vorbereiten ----
