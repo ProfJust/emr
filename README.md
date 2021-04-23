@@ -1,6 +1,8 @@
 # emr
 Software zum Modul EMR Embedded Robotics SS21
 
+![youBot](https://upload.wikimedia.org/wikipedia/commons/5/59/KUKA_youBot.jpg)
+
 Nachdem Ubuntu Focal Fossa 20.4 (LTS) installiert wurde 
 als erstes einen catkin-Workspace Ordner erstellen
 
@@ -48,4 +50,4 @@ starten können
 
 >$ roslaunch emr_worlds youbot_arena.launch
 
-![youBot](https://upload.wikimedia.org/wikipedia/commons/5/59/KUKA_youBot.jpg)
+
