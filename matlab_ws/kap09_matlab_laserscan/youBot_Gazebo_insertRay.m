@@ -12,6 +12,8 @@ subOdom = rossubscriber ('odom', 'nav_msgs/Odometry');
 %% ----- map erstellen --------------
 %10m x 10m mit 50 Werten pro m => 2cm Raster
     %map = robotics.OccupancyGrid(20,20,50);
+    % neue Navigation Toolbox seit R2020a 
+    % OccupancyGrid wird zu occupancyMap
     map = occupancyMap(20,20,50);
 %Startposition des youBot  % Offset-Map - Pose youBot
     map.GridLocationInWorld = [-6,-6];
@@ -24,7 +26,7 @@ subOdom = rossubscriber ('odom', 'nav_msgs/Odometry');
 %maxrange = 5.6;
 
 
-scandata = receive(sub1,10); % Abstandswerte holen => Zeilenvektor 
+scandata = receive(subScan,10); % Abstandswerte holen => Zeilenvektor 
 numbOfScans = size(scandata.Ranges,1); % Spaltenzahl des Zeilenvektors 
 minAngle = scandata.AngleMin;  % Winkelbereich holen
 maxAngle = scandata.AngleMax;
