@@ -45,6 +45,14 @@ ggf. noch die .bahsrc konfigurieren
 
 >$ ./edit_bashrc_for_emr.sh 
 
+Kompilieren mit dem catkin-Buils-System
+>cd catkin_ws
+
+>catkin_make
+
+Falls catkin_make nicht bekannt ist, 
+versuchen Sie den Befehl in einem neuen Terminal zu starten.
+
 Nun sollte man den youBots in unsere Gazebo-Arena
 starten können
 
