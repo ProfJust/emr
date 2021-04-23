@@ -6,7 +6,8 @@ als erstes einen catkin-Workspace Ordner erstellen
 
 Terminal öffnen mit STRG+ALT+T. Hinter dem Prompt $ die Befehle eingeben
 
-<$ mkdir catkin_ws>
+>$ mkdir catkin_ws
+
 >$ cd catkin_ws
 
 >$ mkdir src
@@ -46,3 +47,5 @@ Nun sollte man den youBots in unsere Gazebo-Arena
 starten können
 
 >$ roslaunch emr_worlds youbot_arena.launch
+
+![GitHub Logo](/images/logo.png)
