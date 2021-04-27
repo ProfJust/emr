@@ -14,6 +14,12 @@
 try
     rosnode list
 catch exp   % Error from rosnode list
-    rosinit  % only if error: rosinit   
+   % only if error: rosinit   
+   % localhost or IP
+   % rosinit  wenn ROS-Master auf localhost
+   % sonst die IP des ROS-Masters
+   % siehe Terminal mit $roscore
+   % -> started roslaunch server http://192.168.1.142:35877
+   rosinit('192.168.1.142')
 end
 % ....
