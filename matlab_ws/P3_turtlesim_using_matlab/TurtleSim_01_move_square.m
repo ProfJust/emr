@@ -1,7 +1,7 @@
 %% TurtleSim_01.m
 % TurtleSim ansteuern um ein Quadrat zu fahren
 % zeitgesteuert
-% EMR - Version vom 13.05.2020 - gitHub
+% EMR - Version vom 27.04.2021 - gitHub
 %-------------------------------------
 % !! Das hier funktioniert leider nicht !!
 % system('roscore')
@@ -11,11 +11,9 @@
 % system(['export LD_LIBRARY_PATH="LD_path";' 'roslaunch turtlesim_shell.launch &']);
 % system(['export LD_LIBRARY_PATH="LD_path";' 'roslaunch turtlesim_shell.launch & echo $!']);
 
-ROS_Node_init_localhost;
+ROS_init_MatlabNode;
 disp 'Did you start rosrun turtlesim turtlesim_node ?'
 disp '$ rosrun turtlesim turtlesim_node'
-
-
 
     %% 
 %--- Anmelden des Topics beim ROS-Master -----

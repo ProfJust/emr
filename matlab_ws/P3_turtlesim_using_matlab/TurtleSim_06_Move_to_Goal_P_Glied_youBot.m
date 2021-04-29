@@ -10,7 +10,7 @@ ROS_Node_init_localhost;
 
 
 %%--- Anmelden des Topics beim ROS-Master -----
-    myPublisher = rospublisher ('turtle1/cmd_vel', 'geometry_msgs/Twist');
+    myPublisher = rospublisher ('/cmd_vel', 'geometry_msgs/Twist');
 % Subscriber anmelden
     mySub = rossubscriber ('/turtle1/pose');
 %---  zunächst leere Message in diesem Topic erzeugen --
