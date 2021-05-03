@@ -41,6 +41,7 @@ while go
     disp(scandata.Ranges(numbOfScans/2));  % direkt nach vorn
     
     % Suche Kleinsten Abstandswert => Winkel to go
+    
    
 end
 pause(10);
