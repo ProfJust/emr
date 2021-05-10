@@ -1,8 +1,9 @@
 % LaserScan01.m
 %-----------------------------------
-% EMR - 13.5.2020 
+% EMR - 23.4.2021 
 %-------------------------------------------
 % Empfang der Daten vom Laser => plot
+% roslaunch emr_worlds youbot_arena.launch
 %------------------------------------------
 
 ROS_Node_init_localhost;

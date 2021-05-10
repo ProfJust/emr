@@ -32,7 +32,7 @@ int main (int argc, char **argv){
 	// Instanziere Message
 		geometry_msgs::Twist myMsg;
 	
-	printf(" WASD Q - Steueung fuer den Robot0");
+	printf(" WASD Q - Steueung fuer den Robot");
 
 	while(ros::ok()){  //Endlosschleife bis rosshutdown	
 				

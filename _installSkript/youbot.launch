@@ -11,14 +11,15 @@
   <arg name="headless" default="false"/>
 
   <!-- launch world -->
-  <include file="$(find youbot_gazebo_worlds)/launch/$(arg world).launch">
-	<arg name="debug" value="$(arg debug)" />
+  <include file="$(find youbot_gazebo_worlds)/$(arg world).launch">
+	<!-- arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
-    <arg name="headless" value="$(arg headless)"/>
+    <arg name="headless" value="$(arg headless)"/  -->
   </include> 
   
-  <param name="robot_description" command="$(find xacro)/xacro $(find youbot_description)/robots/youbot.urdf.xacro" />
+  <param name="robot_description" 
+         command="$(find xacro)/xacro $(find youbot_description)/robots/youbot.urdf.xacro" />
 
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_robot" respawn="false" output="screen"
     args="-param robot_description

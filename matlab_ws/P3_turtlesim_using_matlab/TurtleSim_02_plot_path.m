@@ -6,7 +6,7 @@
 % EMR - 13.5.2020
 %----------------------------------------------------
 
-ROS_Node_init_localhost;
+ROS_init_MatlabNode
 
 %%
 % Subscriber anmelden

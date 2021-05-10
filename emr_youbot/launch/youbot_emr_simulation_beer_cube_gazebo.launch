@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find youbot_gazebo_robot)/launch/youbot.launch">
+    <arg name="world" value="beer_world" />
+  </include>
+
+</launch>
+
+

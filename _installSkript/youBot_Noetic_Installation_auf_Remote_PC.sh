@@ -20,10 +20,11 @@ sudo apt install ros-noetic-map-server -y
 sudo apt install ros-noetic-slam-gmapping -y #fehlt noch
 sudo apt install ros-noetic-amcl -y
 sudo apt install ros-noetic-move-base -y
-# sudo apt install ros-noetic-pr2-msgs -y Noch kein noetic-release verfuegbar
-git clone https://github.com/GeraldHebinck/pr2_common.git -b msg_only
+sudo apt install ros-noetic-pr2-msgs -y #  noetic-release jetzt verfuegbar
+# git clone https://github.com/GeraldHebinck/pr2_common.git -b msg_only
 sudo apt install ros-noetic-joint-trajectory-controller -y
-sudo apt install ros-noetic-rqt-joint-trajectory-controller # fuer Armsteuerung mit RQT
+sudo apt install ros-noetic-rqt-joint-trajectory-controller -y # fuer Armsteuerung mit RQT
+sudo apt-get install ros-noetic-moveit-simple-controller-manager -y # Für MoveIt! in Gazebo
 
 git clone https://github.com/GeraldHebinck/emr -b noetic
 git clone https://github.com/GeraldHebinck/youbot_navigation.git -b noetic-devel # fork von https://github.com/youbot/youbot_navigation

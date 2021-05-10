@@ -6,10 +6,10 @@
 % Nutzt die Funktionen ROS_Node_init_localhost
 % EingabeTurtleCommand() und move4Time()
 %---------------------------------------------------------
-% EMR - 13.5.2020
+% EMR - 27.4.2021
 %---------------------------------------------------------
 
-ROS_Node_init_localhost;
+ROS_init_MatlabNode
 
 %%
 % ---- Subscriber anmelden ----
@@ -42,9 +42,7 @@ while 1
         myMsg.(movement).(dir)=speed;
         send(myPublisher,myMsg); % => ROS
     end
-    
-   
-    
+        
     % ROS-Msg zum Anhalten (speed = 0)
     speed = 0;
     myMsg.(movement).(dir)=speed;
