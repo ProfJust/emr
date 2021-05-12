@@ -25,6 +25,8 @@ sudo apt install ros-noetic-pr2-msgs -y #  noetic-release jetzt verfuegbar
 sudo apt install ros-noetic-joint-trajectory-controller -y
 sudo apt install ros-noetic-rqt-joint-trajectory-controller -y # fuer Armsteuerung mit RQT
 sudo apt-get install ros-noetic-moveit-simple-controller-manager -y # Für MoveIt! in Gazebo
+sudo apt-get install ros-noetic-moveit -y
+
 
 git clone https://github.com/GeraldHebinck/emr -b noetic
 git clone https://github.com/GeraldHebinck/youbot_navigation.git -b noetic-devel # fork von https://github.com/youbot/youbot_navigation
