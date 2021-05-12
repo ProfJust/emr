@@ -35,19 +35,18 @@ map.GridLocationInWorld = [-6, -6];
     odomPoseStamped = rosmessage('geometry_msgs/PoseStamped'); % Instanziierung
     odomPoseStamped.Pose = odomMsg.Pose.Pose;
     odomPoseStamped.Header = odomMsg.Header;
-     
-    % Transform the ROS message to the 'base_laser_front_link' frame 
+            
     transOdomMsg = transform(tftree,'/base_laser_front_link', odomPoseStamped);
     %% Debug
-     disp(odomPoseStamped.Pose.Position);
-     disp(transOdomMsg.Pose.Position);
+     %disp(odomMsg.Pose.Pose.Position);
+     %disp(transOdomMsg.Pose.Position);
     
     
     %% Theta ermitteln => pose
     myQuat = [ odomMsg.Pose.Pose.Orientation.X + transOdomMsg.Pose.Orientation.X ...
-               odomMsg.Pose.Pose.Orientation.Y + transOdomMsg.Pose.Orientation.Y ...
-               odomMsg.Pose.Pose.Orientation.Z + transOdomMsg.Pose.Orientation.Z ...
-               odomMsg.Pose.Pose.Orientation.W + transOdomMsg.Pose.Orientation.W ];
+               odomMsg.Pose.Pose.Orientation.Y +transOdomMsg.Pose.Orientation.Y ...
+               odomMsg.Pose.Pose.Orientation. +transOdomMsg.Pose.Orientation.Z ...
+               odomMsg.Pose.Pose.Orientation.X +transOdomMsg.Pose.Orientation.W ];
     eulZYX = quat2eul(myQuat);
     theta = eulZYX(3);  
     poseLaser = [odomPoseStamped.Pose.Position.X + transOdomMsg.Pose.Position.X...
@@ -63,11 +62,7 @@ map.GridLocationInWorld = [-6, -6];
     insertRay(map, poseLaser, scan.Ranges, scan.Angles, double(scanMsg.RangeMax));
     
     show(map)    
- end
-
- 
- 
- 
+end
 
     % transformieren
     % getTransform(tftree,targetframe,sourceframe)
