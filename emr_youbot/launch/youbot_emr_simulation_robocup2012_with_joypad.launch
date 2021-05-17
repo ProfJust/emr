@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find youbot_gazebo_robot)/launch/youbot.launch">
+    <arg name="world" value="robocup_at_work_2012" />
+  </include>
+  
+
+   <include file="$(find youbot_navigation)/launch/navigation_no_map.launch" /> 
+
+  <!-- <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch" /> -->
+
+  <node name="rviz" type="rviz" pkg="rviz" args="-d $(find youbot_launch)/config/motion_planning.rviz" />
+
+
+<node name="joy_node" type="joy_node" pkg"joy">
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+</node>
+
+<node pkg="emr" type="youBot_teleop_joy" name="teleop"/>
+
+</launch>
