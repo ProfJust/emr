@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>emr_teleop_joy4youBot</name>
+  <name>emr_teleop_joy4youbot</name>
   <version>0.1.0</version>
   <description>EMR teleop joypad 4 youBot</description>
   <maintainer email="olaf.just@w-hs.de">Olaf Just</maintainer>

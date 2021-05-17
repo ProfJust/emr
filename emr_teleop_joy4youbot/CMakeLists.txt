@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(emr_teleop_joy4youBot)
+project(emr_teleop_joy4youbot)
 
 ## Use C++11
 add_definitions(--std=c++11)
