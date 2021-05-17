@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(youBot_teleop_joy)
+project(emr_teleop_joy4youBot)
 
 ## Use C++11
 add_definitions(--std=c++11)
@@ -8,6 +8,7 @@ add_definitions(--std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   geometry_msgs
+  sensor_msgs
 )
 
 ###################################
@@ -26,6 +27,7 @@ catkin_package(
   CATKIN_DEPENDS 
     roscpp
     geometry_msgs
+    sensor_msgs
 #  DEPENDS 
 )
 
@@ -37,7 +39,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   include
-   ${catkin_INCLUDE_DIRS}/emr/youBot_teleop_joy
+   ${catkin_INCLUDE_DIRS}/emr/emr_teleop_joy4youBot
 )
 
 ## Declare a C++ executable
