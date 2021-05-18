@@ -112,4 +112,10 @@ disp('##### Ziel erreicht ####');
     msgsBaseVel.Angular.Z=0;
     send(pubVel,msgsBaseVel);
 
+% Achtung: Odometer des youBots kann nur per neulaunch resetet werden
+% oder per
+% $rosservice call /gazebo/set_model_state '{model_state: { model_name: youbot, pose: { position: { x: 0.0, y: 0.0 ,z: 0.1 }, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 0.0 } }, twist: { linear: {x: 0.0 , y: 0 ,z: 0 } , angular: { x: 0.0 , y: 0 , z: 0.0 } } , reference_frame: world } }'
+% success: True
+% status_message: "SetModelState: set model state done"
+% check: rostopic echo -n 1 /gazebo/model_states
 

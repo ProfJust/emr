@@ -9,7 +9,8 @@
 %
 %--------------------------------------------
 %% Load Laser Scan Data from File
-scan=load('mySavedLaserScans.mat');
+%scan=load('mySavedLaserScans.mat');
+scan=load('scanSS21_01.mat');
 numScans = numel(scan.LaserScans)
 
 %% Build Occupancy Grid Map Using Iterative Scan Matching
@@ -67,7 +68,10 @@ for idx = 2: numScans
     end
     
     % Maintain the list of robot poses.
-    absolutePose = exampleHelperComposeTransform(poseList(idx-1,:), transform);
+    % Navigation Toolbox required
+    % openExample('nav/EstimateRobotPoseWithScanMatchingExample')
+    absolutePose = exampleHelperComposeTransform(poseList(idx-1,:), transform); 
+   
     %absolutePose = absolutePose + transform;
     poseList(idx,:) = absolutePose;
     
