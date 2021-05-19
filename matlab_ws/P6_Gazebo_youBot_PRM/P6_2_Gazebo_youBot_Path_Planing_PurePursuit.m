@@ -43,17 +43,16 @@ Y = posedata.Pose.Pose.Position.Y;
 startLocation = [X Y];
 yaw = yawFromPose(posedata);
 initialOrientation = yaw;
-fprintf('Start-Pose des youBots: %f %f %f\n',X,Y, yaw);
+fprintf('Start-Pose des youBots: %f %f %f\n',X, Y, yaw);
 endLocation = [0.0 -4.0]
-
 %     %Wieder zurueck in die Box
 %      endLocation = [0.6 0.3];
 
 %% --- PRM ---
 % Create probabilistic roadmap path planner
 prm = robotics.PRM(mapInflated.map);
-prm.NumNodes = 500;
-prm.ConnectionDistance = 20;
+prm.NumNodes = 100;
+prm.ConnectionDistance = 1;  % m?  was 20
 disp('Suche PRM Pfad ...  (das kann etwas dauern)');
 
 searching4path = true;

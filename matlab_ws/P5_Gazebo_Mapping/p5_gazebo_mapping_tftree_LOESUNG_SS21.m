@@ -2,6 +2,7 @@
 %-----------------------------------------
 % mappt die Gazebo-Welt mit rostf
 % OJ fuer EMR am 18.5.2021
+% $ roslaunch emr_youbot youbot_emr_simulation_robocup2012.launch
 %-----------------------------------------------------------------------
 ROS_Node_init_localhost;
 

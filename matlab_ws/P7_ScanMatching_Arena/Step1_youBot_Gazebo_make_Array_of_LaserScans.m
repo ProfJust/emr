@@ -12,6 +12,7 @@
 % mit zusaetzlichen Dosen, Waenden etc versehen
 % Am besten eine Wand drumherum wie im Labor
 % oder Labor-Arena-World nutzen
+% $ roslaunch emr_worlds youbot_arena.launch 
 % ...oder youBot in Willow-Garage stellen
 %--------------------------------------------
 clear; %workspace

@@ -23,7 +23,7 @@
 %% ---- Karte laden ----
    disp('  KarteGazeboWorld.mat laden und aufblasen ')
    %mapInflated = load('KarteGazeboWorld.mat');
-   mapInflated = load('myArenaMap.mat');
+   mapInflated = load('myArenaMap_SS21.mat');
 % Aufblasen (inflate) der Map
 % inflates each occupied position by the radius given in number of cells.
     inflate(mapInflated.map,youBotRadiusGrid,'grid');

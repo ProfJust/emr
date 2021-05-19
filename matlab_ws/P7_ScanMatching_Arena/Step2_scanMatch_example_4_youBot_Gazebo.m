@@ -10,7 +10,7 @@
 %--------------------------------------------
 %% Load Laser Scan Data from File
 %scan=load('mySavedLaserScans.mat');
-scan=load('scanSS21_01.mat');
+scan=load('scanSS21_02.mat');
 numScans = numel(scan.LaserScans)
 
 %% Build Occupancy Grid Map Using Iterative Scan Matching
