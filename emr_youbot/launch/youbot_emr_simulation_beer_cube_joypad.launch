@@ -9,7 +9,7 @@
     <param name="dev" type="string" value="/dev/input/js0" />
     <param name="deadzone" value="0.12" />
 
-<node pkg="emr_teleop_joy4youbot" type="emr_teleop_joy4youbot" name="emr_teleop_joy4youbot" />
+ <node pkg="emr_teleop_joy4youbot" type="emr_teleop_joy4youbot" name="emr_teleop_joy4youbot" />
 
 </launch>
 
