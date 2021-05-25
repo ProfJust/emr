@@ -102,10 +102,16 @@ else
 end
 
 %% GET INITIAL POSE FROM ODOMETRY FOR AMCL
-posedata_quat = receive(subOdom,10);
+%posedata_quat = receive(subOdom,10);
 % pose in Euler umrechnen (mit Versatz)
-InitialPose = youBot_Pose_Quat_2_Eul(posedata_quat);
-amcl.InitialPose = InitialPose;
+% InitialPose = youBot_Pose_Quat_2_Eul(posedata_quat);
+%% Get initial Pose from User
+disp('Pose Estimation mit Maus auf Karte waehlen');
+show(mapInflated.map);
+show grid;
+hold on;
+InitialPose = ginput(1)
+amcl.InitialPose = [InitialPose(1) InitialPose(2) 0];
 amcl.InitialCovariance = eye(3)*0.5;
 visualizationHelper = ExampleHelperAMCLVisualization(mapInflated.map);
 
@@ -128,7 +134,7 @@ while cntUpdate < numUpdate
     % sensor readings
     [isUpdated,estimatedPose, estimatedCovariance] = ...
         amcl(pose, scan.Ranges, scan.Angles);
-    % Drive robot to next pose. (youBot still moving)
+    % robot drives to next pose. (youBot still moving)
     if isUpdated 
         cntUpdate = cntUpdate + 1;
         disp('cntUpdate: '); disp(cntUpdate);
@@ -152,18 +158,19 @@ while cntUpdate < numUpdate
 end
 
 %% Finally Stop Robot
-msgsBaseVel.Linear.X = 0;
-msgsBaseVel.Linear.Y = 0;
-msgsBaseVel.Angular.Z = 0;
-send(pubVel,msgsBaseVel);
+while 1  % Roboter muss stoppen rqt überschreiben
+    msgsBaseVel.Linear.X = 0;
+    msgsBaseVel.Linear.Y = 0;
+    msgsBaseVel.Angular.Z = 0;
+    send(pubVel,msgsBaseVel);
 
-beep() %Produce operating system beep sound
-disp('## Done Estimating - stop youBot ##')
-disp('reale Pose (Odometry)');
-disp(pose);
-disp('Estimated Pose (AMCL)');
-disp(estimatedPose);
-
+    beep() %Produce operating system beep sound
+    disp('## Done Estimating - stop youBot ##')
+    disp('Pose (Odometry)');
+    disp(pose);
+    disp('Estimated Pose (AMCL)');
+    disp(estimatedPose);
+end
 
 
 

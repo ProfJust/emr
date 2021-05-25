@@ -4,8 +4,7 @@
 % roslaunch emr_worlds youbot_arena.launch 
 % .d.h. youBot in der Arena des Robotik-Labors
 %--------------------------------------------------------------
-% 25.05.2021 jetzt wird auch der Unterschied zwischen AMCL-Pose
-% und Odom-Pose mitberücksichtig => immer erst Step3, dann Step4
+% 25.05.2021
 %---------------------------------------------------------------
 %% -- ROS Init --
 close all;
@@ -32,13 +31,13 @@ show(mapInflated.map);
 hold on;
 
 % aktuelle Odom_Pose holen
-posedata = receive(subOdom,10);
-X = posedata.Pose.Pose.Position.X;
-Y = posedata.Pose.Pose.Position.Y;
-% Winkel berechnet sich aus den Quarternionen
-yaw = yawFromPose(posedata);
-% Compute the controller outputs, i.e., the inputs to the robot
-robotCurrentPose = [X, Y, yaw]
+    posedata = receive(subOdom,10);
+    X = posedata.Pose.Pose.Position.X;
+    Y = posedata.Pose.Pose.Position.Y;
+    % Winkel berechnet sich aus den Quarternionen
+    yaw = yawFromPose(posedata);
+    % Compute the controller outputs, i.e., the inputs to the robot
+    robotCurrentPose = [X, Y, yaw]
 
 
 disp('Nutze die AMCL-Pose aus Step 3 als Start-Pose');
@@ -51,8 +50,8 @@ startLocation = [estimatedPose(1) estimatedPose(2)] % X,Y
 initialOrientation = estimatedPose(3); % yaw
 
 % Differenz zwischen der Odometrie und AMCL (not resetable?)
-posemismatch = [estimatedPose(1)-X  estimatedPose(2)-Y wrapToPi(estimatedPose(3)-yaw)]
-clear estimatedPose; % delete from Workspace => Nur einmal korrekt
+posemismatch = [estimatedPose(1)-X  estimatedPose(1)-Y estimatedPose(1)-yaw]
+clear estimatedPose; % delete from Workspace
 
 % -- endLocation is choosen by user
   disp('Ziel mit Maus auf Karte waehlen');
@@ -104,7 +103,7 @@ while(distanceToGoal > goalRadius )
     yaw = yawFromPose(posedata);
     % Compute the controller outputs, i.e., the inputs to the robot
     robotCurrentOdomPose = [X, Y, yaw]
-    robotCurrentPose = robotCurrentOdomPose + posemismatch
+    robotCurrentPose = robotCurrentOdomPose - posemismatch
     %% #################  verbesserter PurePursuit ####################
     % alt [v, omega] = controller(robotCurrentPose);
     [v_x, v_y, omega] = step_PurePursuit_youbot(controller, robotCurrentPose);
