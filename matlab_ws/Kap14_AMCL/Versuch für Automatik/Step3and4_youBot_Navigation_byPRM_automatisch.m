@@ -32,7 +32,7 @@ msgsBaseVel = rosmessage(pubVel);
 mapInflated = load('myArenaMap.mat');
 % Aufblasen (inflate) der Map
 disp('Inflate Map ...');
-inflate(mapInflated.map,youBotRadiusGrid,'grid');
+inflate(mapInflated.map, youBotRadiusGrid,'grid');
 show(mapInflated.map);
 grid minor;
 grid on;
@@ -48,8 +48,8 @@ yaw = yawFromPose(posedata);
 robotCurrentOdomPose = [X, Y, yaw]
 
 %% --- get AMCL-Pose Step3 from Workspace
-input('Nutze die AMCL-Pose aus Step 3 als Start-Pose => Vor jeder Ausführung Step3 ausführen');
-
+disp('Nutze die AMCL-Pose aus Step 3 als Start-Pose => Vor jeder Ausführung Step3 ausführen');
+Step3_youBot_Navigation_byAMCL_automatisch
 % estimated Pose aus Step3 sollte im Workspace liegen
 if not(exist('estimatedBasePose'))
     disp('Error: AMCL-Pose aus Step 3 liegt nicht im Workspace');
