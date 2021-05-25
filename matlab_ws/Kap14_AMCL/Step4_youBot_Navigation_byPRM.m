@@ -29,6 +29,8 @@ mapInflated = load('myArenaMap.mat');
 disp('Inflate Map ...');
 inflate(mapInflated.map,youBotRadiusGrid,'grid');
 show(mapInflated.map);
+grid minor;
+grid on;
 hold on;
 
 % aktuelle Odom_Pose holen

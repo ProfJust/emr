@@ -93,18 +93,27 @@ numUpdate = 90; % Max. Anzahl der AMCL Update Zyklen
 %% MONTE CARLO LOCALIZATION (MCL) - Algorithm
 %MCL - https://de.mathworks.com/help/robotics/examples/localize-turtlebot-using-monte-carlo-localization.html
 
+% Check whether mapInflated is already available
+% if exist('mapInflated','var')
+%     disp('## Map is up to date ##');
+% else
+%     disp('## Map Inflation ##');
+%     inflate(mapInflated,youbotRadiusGrid,'grid');
+%     % Randomly generate NODES
+%     prm = robotics.PRM(mapInflated);
+%     prm.NumNodes = 214; % number of nodes
+%     prm.ConnectionDistance = 1; % in meters
+% end
+
 %% GET INITIAL POSE FROM ODOMETRY FOR AMCL
+%posedata_quat = receive(subOdom,10);
+% pose in Euler umrechnen (mit Versatz)
+% InitialPose = youBot_Pose_Quat_2_Eul(posedata_quat);
 %% Get initial Pose from User
-disp('Pose Estimation mit Maus auf Karte waehlen');
-show(mapInflated.map);
-grid minor;
-grid on;
-hold on;
-InitialPose = ginput(1)
-amcl.InitialPose = [InitialPose(1) InitialPose(2) 0];
+% hier von Hand eintragen
+amcl.InitialPose = [-0.0   -0.0  0];  %Odom
 amcl.InitialCovariance = eye(3)*0.5;
 visualizationHelper = ExampleHelperAMCLVisualization(mapInflated.map);
-
 
 cntUpdate=0;
 scanCnt=0;

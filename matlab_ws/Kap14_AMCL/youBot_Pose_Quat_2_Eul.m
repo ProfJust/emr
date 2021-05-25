@@ -18,8 +18,8 @@ function poseEuler = youBot_Pose_Quat_2_Eul(posedata_quat)
     theta = eulZYX(3);  
     
     %% Kein Versatz !!!
-    poseX = posedata_quat.Pose.Pose.Position.X    %+ cos(theta)*versatz; 
-    poseY = posedata_quat.Pose.Pose.Position.Y    %+ sin(theta)*versatz; 
+    poseX = posedata_quat.Pose.Pose.Position.X;    %+ cos(theta)*versatz; 
+    poseY = posedata_quat.Pose.Pose.Position.Y;    %+ sin(theta)*versatz; 
     
     poseEuler = [poseX, poseY, theta];
     
