@@ -22,7 +22,7 @@
 %
 %
 % ------------------------------------------
-% Version vom 9.06.2020 edited for youBot by OJ
+% Version vom 26.05.2021 edited for youBot by OJ
 % robotik.bocholt@w-hs.de
 % ------------------------------------------
 close all; %figures

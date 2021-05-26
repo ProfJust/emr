@@ -17,7 +17,7 @@ close all;
 % Pure Pursuit
 goalRadius = 0.3; % Ziel-Toleranz in Meter
 % Inflate by the radius given in number of Grid cells.
-youBotRadiusGrid = 9; %Aufblasen auf youBot-Breite default 15
+youBotRadiusGrid = 5; %Aufblasen auf youBot-Breite default 15
 % Matlab mit ROS - Master verbinden (wenn noch nicht geschehen)
 try
     rosnode list
