@@ -11,7 +11,7 @@
 // siehe auch:
 // A Gentle Introduction to ROS von J.O.Kane
 //------------------------------------------
-#include </ros/ros.h>
+#include <ros/ros.h>
 
 // ROS-Klasse für den Nachrichten-Typ einbinden
 #include <geometry_msgs/Twist.h>

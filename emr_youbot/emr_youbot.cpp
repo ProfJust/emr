@@ -12,7 +12,7 @@
 // kompilieren mit $ catkin_make
 // starten mit rosrum hello_ros_node hello_ros_node
 //---------------------------------------------------------
-#include </ros/ros.h>
+#include <ros/ros.h>
 
 int main (int argc, char** argv){
 	ros::init(argc,argv,"hello_ROS");
