@@ -14,8 +14,10 @@
     <param name="calibrate_time" value="true"/>
     <param name="publish_intensity" value="false"/>
     <param name="publish_multiecho" value="false"/>
-    <param name="angle_min" value="-1.5707963"/>
-    <param name="angle_max" value="1.5707963"/>
+    
+    <!-- da der YouBot sonst seine eigenen Räder scannt -->
+    <param name="angle_min" value="-1.7978254834"/>
+    <param name="angle_max" value="1.7978254834"/>
     <remap from="scan" to="base_scan"/>
   </node>
 
