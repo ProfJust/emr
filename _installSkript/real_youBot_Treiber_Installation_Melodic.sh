@@ -84,7 +84,7 @@ echo -e "\033[34m add at bottom ~/catkin_ws/src/youbot_navigation/youbot_navigat
 #)
 
 
-## Erganze Zeilen in CMakeLists since catkion_make says ros.h was not found
+## Erganze Zeilen in CMakeLists since catkin_make says ros.h was not found
 cd ~/catkin_ws/src/youbot_navigation/youbot_navigation_common/
 echo "## by OJ since ros.h was not found" >> CMakeLists.txt
 echo "INCLUDE_DIRECTORIES(" >> CMakeLists.txt
@@ -103,3 +103,15 @@ echo -e "\033[34m EMR - SS20 - Workspace is installed - have fun!  \033[0m"
 echo -e "\033[32m $ roslaunch emr_youbot youbot_emr_simulation_complete.launch \033[0m"
 echo -e "\033[32m To start Gazebo World also use =>  $ gzclient \033[0m"
 
+######## Noch zu ergänzen sind die Befehle zum Kopieren der so-Files.
+#11. YouBot Treiber installieren nach Herrn Walter Nowak
+#Um den die YouBot Treiber benutzten zu koennen:
+##### von 'opt/ros/melodic/lib' nach 'usr/lib' kopieren #####
+#libtf2.so
+#libtf2_ros.so
+#libxmlrpcpp.so
+#libcpp_common.so
+#librosconsole_log4cxx.so
+#librosconsole_backend_interface.so
+##################################
+#Quelle: https://answers.ros.org/question/272171/error-while-loading-shared-libraries/
