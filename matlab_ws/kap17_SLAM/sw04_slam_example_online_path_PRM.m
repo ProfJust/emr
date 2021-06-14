@@ -19,7 +19,7 @@
     pubVel  = rospublisher  ('cmd_vel', 'geometry_msgs/Twist');
     msgsBaseVel = rosmessage(pubVel);
 %% Pfad folgen mit PurePursuit-Controller
-%% hier noch gegen den youBot PurePursuit tauschen
+%% h[v_x, v_y, omega] = step_PurePursuit_youbot(controller, robotCurrentPose);
     goalRadius = 0.5;
     % Inflate by the radius given in number of Grid cells.
     youBotRadiusGrid = 8;
@@ -38,16 +38,17 @@
     close all; %figures
     firstLoopClosure = false;
     title('Occupancy Grid Map Built Using Lidar SLAM');
-    i=1;
+    
 
 %% -----------------------
+i=1;
 while (true)
     %% LaserScan empfangen
     scandata = receive(subScan,10);
     scans{i} = lidarScan(scandata);    
     [isScanAccepted,loopClosureInfo,optimizationInfo] = addScan(slamAlg,scans{i});
     if isScanAccepted
-        figure(1); show(slamAlg);
+        %figure(1); show(slamAlg);
         if optimizationInfo.IsPerformed && ~firstLoopClosure
             firstLoopClosure = true;
             show(slamAlg,'Poses','off');
@@ -75,13 +76,14 @@ while (true)
         %--- PRM ---
          mapInflated.OccupiedThreshold = 0.8; % Schwellwert für Besetzt (0..1 je höher desto dunkler)
          prm = robotics.PRM(mapInflated);
-         prm.NumNodes = 100;
-         prm.ConnectionDistance = 5;
+         prm.NumNodes = 200;
+         prm.ConnectionDistance = 3;
          startLocation = [optimizedPoses(i,1),optimizedPoses(i,1)];   %latest
          startValid = false;
          while  startValid == false
+             % Grauwert der StartLocation holen
              iOccvalStart = getOccupancy(mapInflated, startLocation);
-             if iOccvalStart >= 0.5
+             if iOccvalStart >= map.FreeThreshold
                 disp(' Startpunkt eingeben');
                 figure(3);
                 startLocation = ginput(1) % get 1 Point 
@@ -93,7 +95,8 @@ while (true)
          goalValid = false;
          while goalValid == false
             disp(' Zielpunkt eingeben');
-            goalLocation =  ginput(1)
+            goalLocation =  ginput(1) % 1 Pkt eingeben
+            % Wenn Position kein Hindernis Grauwert>Besetzt
             iOccval = getOccupancy(mapInflated,goalLocation);
             if iOccval <= map.OccupiedThreshold  
                  goalValid = true;

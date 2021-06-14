@@ -22,12 +22,12 @@
 %% Pfad folgen mit PurePursuit-Controller
     goalRadius = 0.5;
     % Inflate by the radius given in number of Grid cells.
-    youBotRadiusGrid = 2;
+    youBotRadiusGrid = 3.0;
     goalIsSet = false;
     controller = robotics.PurePursuit;
     controller.DesiredLinearVelocity = 0.3;
     controller.MaxAngularVelocity = 0.3;  
-    controller.LookaheadDistance = 0.5;   
+    controller.LookaheadDistance = 2.5;   
 %% Create lidarSLAM-Objekt
     maxLidarRange = 5.6;
     mapResolution = 20;
