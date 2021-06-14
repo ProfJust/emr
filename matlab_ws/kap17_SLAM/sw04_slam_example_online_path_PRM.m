@@ -19,6 +19,7 @@
     pubVel  = rospublisher  ('cmd_vel', 'geometry_msgs/Twist');
     msgsBaseVel = rosmessage(pubVel);
 %% Pfad folgen mit PurePursuit-Controller
+%% hier noch gegen den youBot PurePursuit tauschen
     goalRadius = 0.5;
     % Inflate by the radius given in number of Grid cells.
     youBotRadiusGrid = 8;
@@ -26,7 +27,7 @@
     controller = robotics.PurePursuit;
     controller.DesiredLinearVelocity = 0.3;
     controller.MaxAngularVelocity = 0.3;  
-    controller.LookaheadDistance = 0.5;   
+    controller.LookaheadDistance = 0.8;   
 %% Create lidarSLAM-Objekt
     maxLidarRange = 5.6;
     mapResolution = 20;
@@ -67,6 +68,7 @@ while (true)
     hold off
     %% move Robot
     if goalIsSet==false
+         close all; %figures
         mapInflated = map;
         inflate(mapInflated,youBotRadiusGrid,'grid');
         figure(3); show(mapInflated);
@@ -81,7 +83,8 @@ while (true)
              iOccvalStart = getOccupancy(mapInflated, startLocation);
              if iOccvalStart >= 0.5
                 disp(' Startpunkt eingeben');
-                startLocation = ginput(1)
+                figure(3);
+                startLocation = ginput(1) % get 1 Point 
              else
                  startValid = true;
              end
