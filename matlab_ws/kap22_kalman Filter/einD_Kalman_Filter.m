@@ -1,5 +1,8 @@
 %Klaman01.m
 %http://www.cbcity.de/das-kalman-filter-einfach-erklaert-teil-1
+
+%'normpdf' requires Statistics and Machine Learning Toolbox.
+
  
 %% 1D-Kalman Filter
 % Aufbau und Erläuterung nach Udacity Kurs CS373 taught by Sebastian Thrun
