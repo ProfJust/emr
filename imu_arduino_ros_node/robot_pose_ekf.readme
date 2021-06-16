@@ -10,29 +10,7 @@ CMake Error at /usr/share/cmake-3.16/Modules/FindPkgConfig.cmake:463 (message):
   A required package was not found
 
 
-Hi
-I am having a similar problem with ROS Noetic. I replaced the BFL REQUIRED orocos-bfl with liborocos-kdl REQUIRED to get over the 'package was not found' error. But still, the catkin_make was failed showing:'Invoking "make -j6 -l6" failed'.
-Best,
+Ab Noetic, dieses Paket installieren
+sudo apt-get install liborocos-bfl-dev
 
-
-obot_pose_ekf/package.xml:    <build_depend condition="$ROS_DISTRO == noetic">liborocos-bfl-dev</build_depend>
-robot_pose_ekf/package.xml:    <exec_depend condition="$ROS_DISTRO == noetic">liborocos-bfl-dev</exec_depend>
-robot_pose_ekf/CHANGELOG.rst:* use format3 to support both nfl and liborocos-blf-dev
-robot_pose_ekf/CHANGELOG.rst:* fixed bfl dependency to be liborocos-bfl-dev
-robot_pose_ekf/CHANGELOG.rst:* fixed bfl dependency to be liborocos-bfl
-robot_pose_ekf/CMakeLists.txt:pkg_check_modules(BFL REQUIRED orocos-bfl)
-
-
-
-cmake_minimum_required(VERSION 2.8.3)
-project(robot_pose_ekf)
-
-# bfl (Bayesian Filtering Library) is a third party package that uses pkg-config
-find_package(PkgConfig)
-pkg_check_modules(BFL REQUIRED liborocos-bfl)  # OJU was orocos-bfl)
-
-https://www.orocos.org/kdl.html
-
-
-Funkt nicht!!
 

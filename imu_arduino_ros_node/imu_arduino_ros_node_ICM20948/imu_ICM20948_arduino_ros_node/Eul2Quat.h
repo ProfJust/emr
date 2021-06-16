@@ -1,4 +1,6 @@
 //https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+// edited by OJU 16.6.2021 
+// for WHS - EMR
 
 struct Quaternion
 {

@@ -99,9 +99,9 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.orientation.w =  myOrientQuat.w;
 
   for (int i=0; i<9; i++) {
-    float orient_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+    float orient_cov_matrix[9] = {0.01, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
     imu_msg.orientation_covariance[i] = orient_cov_matrix[i];
-   }
+  }
 
 // angular_velocity kommt vom Gyroscope
 // vgl .https://www.programcreek.com/python/example/99836/sensor_msgs.msg.Imu Example 8
@@ -109,9 +109,15 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.angular_velocity.x = gyro.gyro.x;   
   imu_msg.angular_velocity.y = gyro.gyro.y;     
   imu_msg.angular_velocity.z = gyro.gyro.z;   
- 
+
+
+ // The covariance matrix describes the "uncertainty" in different directions.
+ // Where a bigger value in the matrix indicates that you are more "uncertain" about your pose. 
+ // Suppose the following 1D example. We have a robot that when we tell it, it has to move 1 meter, it can move either 95 cm or 105 cm.
+ // After 1 meter the covariance is 5 cm, because the robot could be at any point between 95cm and 105cm. 
+ // x,y,z, x', y', z',  x'', y'', z''
  for (int i=0; i<9; i++){
-  float ang_vel_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  float ang_vel_cov_matrix[9] = {0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
   imu_msg.angular_velocity_covariance[i] = ang_vel_cov_matrix[i];
  }
   
@@ -121,7 +127,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.linear_acceleration.z = accel.acceleration.z;   
 
  for (int i=0; i<9; i++){
-  float lin_acc_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  float lin_acc_cov_matrix[9] = {0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
   imu_msg.linear_acceleration_covariance[i] = lin_acc_cov_matrix[i];
  }
   
