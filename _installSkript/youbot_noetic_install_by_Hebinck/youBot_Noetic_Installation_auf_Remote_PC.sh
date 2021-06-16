@@ -43,6 +43,12 @@ git clone https://github.com/wnowak/youbot_moveit.git
 #rm -r  android_app_pc_client
 #rm -r keyboard_remote_control
 
+# IMU und EKF
+git clone https://github.com/ros-planning/robot_pose_ekf.git
+sudo apt-get install liborocos-bfl-dev
+
+
+
 echo -e "\033[42m ---------- Aktualisiere alle Abhaengigkeiten der ROS-Pakete ---------- \033[0m"
 source ~/.bashrc
 rosdep update
