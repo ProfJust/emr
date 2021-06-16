@@ -1,9 +1,18 @@
 /*
  * Pubslisht IMU Daten im ROS
- * OJ 11-6-2021 "
+ * OJ 16-6-2021 "
  */
  //---------------------------------------------------------------
-// WHS OJ we use Arduino Nano with ATmega328P (Old Bootloader)
+// WHS OJ we use Arduino Nano with ATmega328P (Old Bootloader)  
+// => to small RAM, 
+// Arduino Uno Wifi => to small RAM, 
+//Globale Variablen verwenden 2225 Bytes (108%) des dynamischen Speichers, -177 Bytes für lokale Variablen verbleiben. Das Maximum sind 2048 Bytes.
+//Nicht genug Arbeitsspeicher; unter http://www.arduino.cc/en/Guide/Troubleshooting#size finden sich Hinweise, um die Größe zu verringern.
+//Fehler beim Kompilieren für das Board Arduino Uno WiFi.
+
+// Arduino Mega2560 RAM OK (32%)
+
+
 // Stemma QT-Kabel 
 // rot      +3V3
 // schwarz  GND
@@ -15,6 +24,7 @@
 // rosrun rosserial_python serial_node.py /dev/ttyUSB0
 //----------------------------------------------------------------
 #include <Wire.h>
+#include "Eul2Quat.h"
 
 #include <Adafruit_ICM20X.h>
 #include <Adafruit_ICM20948.h>
@@ -62,23 +72,58 @@ void loop()
 
 
 //--- Verabeitung => https://learn.adafruit.com/adafruit-tdk-invensense-icm-20948-9-dof-imu/arduino
-// Header
+// https://www.adafruit.com/product/4554
+// der ICM20948 liefert:
+// • 3-Axis Gyroscope with Programmable FSR of ±250 dps, ±500 dps, ±1000 dps, and ±2000 dps
+// • 3-Axis Accelerometer with Programmable FSR of ±2g, ±4g, ±8g, and ±16g
+// • 3-Axis Compass with a wide range to ±4900 µT
+
+// Beschreibung einer IMU https://wiki.ardumower.de/index.php?title=Inertialsensor_-_IMU
+//
+// diese Daten müssen korrekt in die Nachricht eingetragen werden
+// http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/Imu.html
+// Accelerations should be in m/s^2 (not in g's), and rotational velocity should be in rad/sec
+// If you have no estimate for one of the data elements (e.g. your IMU doesn't produce an orientation 
+// estimate), please set element 0 of the associated covariance matrix to -1
+// If you are interpreting this message, please check for a value of -1 in the first element of each 
+// covariance matrix, and disregard the associated estimate.
+
  imu_msg.header.stamp = nh.now();
 //Orientation (Quaternion erforderlich, Euler vom Sensor)
-  imu_msg.orientation.x = mag.magnetic.x; 
-  imu_msg.orientation.y =  mag.magnetic.y; 
-  imu_msg.orientation.z =  mag.magnetic.z; 
-  // 'struct sensors_vec_t' has no member named 'w'   imu_msg.orientation.w = gyro.gyro.w;
 
-// angular_velocity
-  imu_msg.angular_velocity.x = accel.acceleration.x;
-  imu_msg.angular_velocity.y = accel.acceleration.y;
-  imu_msg.angular_velocity.z = accel.acceleration.z;
+Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.z ); 
+
+  imu_msg.orientation.x =  myOrientQuat.x;
+  imu_msg.orientation.y =  myOrientQuat.y;
+  imu_msg.orientation.z =  myOrientQuat.z;
+  imu_msg.orientation.w =  myOrientQuat.w;
+
+  for (int i=0; i<9; i++) {
+    float orient_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+    imu_msg.orientation_covariance[i] = orient_cov_matrix[i];
+   }
+
+// angular_velocity kommt vom Gyroscope
+// vgl .https://www.programcreek.com/python/example/99836/sensor_msgs.msg.Imu Example 8
+// Gyro Range 2000deg/s, OK rad/sec ist korrekt
+  imu_msg.angular_velocity.x = gyro.gyro.x;   
+  imu_msg.angular_velocity.y = gyro.gyro.y;     
+  imu_msg.angular_velocity.z = gyro.gyro.z;   
+ 
+ for (int i=0; i<9; i++){
+  float ang_vel_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  imu_msg.angular_velocity_covariance[i] = ang_vel_cov_matrix[i];
+ }
   
-// linear_acceleration in m/(s*s)
-  imu_msg.linear_acceleration.x = gyro.gyro.x;         
-  imu_msg.linear_acceleration.y = gyro.gyro.y;  
-  imu_msg.linear_acceleration.z = gyro.gyro.z;      
+// linear_acceleration in m/(s*s), Ja stimmt laut Testprogramm
+  imu_msg.linear_acceleration.x = accel.acceleration.x;
+  imu_msg.linear_acceleration.y = accel.acceleration.y;
+  imu_msg.linear_acceleration.z = accel.acceleration.z;   
+
+ for (int i=0; i<9; i++){
+  float lin_acc_cov_matrix[9] = {1.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  imu_msg.linear_acceleration_covariance[i] = lin_acc_cov_matrix[i];
+ }
   
   imu_pub.publish( &imu_msg );
   nh.spinOnce();
