@@ -17,7 +17,7 @@ void loop()
 {
   sensor.read();
 
-  snprintf(report, sizeof(report), "Acc: x %6d  y %6d  z %6d",
+  snprintf(report, sizeof(report), "Acc:  x %6d  y %6d  z %6d",
     sensor.a.x, sensor.a.y, sensor.a.z);
   Serial.println(report);
 

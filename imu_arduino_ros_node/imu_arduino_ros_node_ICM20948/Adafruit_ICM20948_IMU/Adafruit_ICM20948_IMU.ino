@@ -1,5 +1,15 @@
 // Basic demo for accelerometer readings from Adafruit ICM20948
-
+//---------------------------------------------------------------
+// WHS OJ we use Arduino Nano with ATmega328P (Old Bootloader)
+// Stemma QT-Kabel 
+// rot      +3V3
+// schwarz  GND
+// gelb     SCL Arduino Nano A5
+// blau     SDA Arduino Nano A4
+//
+// OJ 16.2.21
+//----------------------------------------------------------------
+ 
 #include <Adafruit_ICM20X.h>
 #include <Adafruit_ICM20948.h>
 #include <Adafruit_Sensor.h>

@@ -34,7 +34,7 @@ void loop()
   sensor.read();
 
 //Verabeitung
-  snprintf(imu_report, sizeof(imu_report), "Acc: x: %6d   y: %6d  z: %6d",sensor.a.x, sensor.a.y, sensor.a.z);
+  snprintf(imu_report, sizeof(imu_report), "Acc:  x: %6d   y: %6d  z: %6d",sensor.a.x, sensor.a.y, sensor.a.z);
   str_msg.data = imu_report;
   imu_pub.publish( &str_msg );
   nh.spinOnce();
