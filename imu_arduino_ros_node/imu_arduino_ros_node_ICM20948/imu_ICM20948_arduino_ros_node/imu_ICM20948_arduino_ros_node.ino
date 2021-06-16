@@ -35,7 +35,7 @@ Adafruit_ICM20948 icm;
 #include <sensor_msgs/Imu.h>
 ros::NodeHandle  nh;
 sensor_msgs::Imu imu_msg;
-ros::Publisher imu_pub("imu_report_topic", &imu_msg);
+ros::Publisher imu_pub("Imu_data", &imu_msg);
 
 void setup()
 {

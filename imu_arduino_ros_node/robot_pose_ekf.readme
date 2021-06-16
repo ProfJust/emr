@@ -14,3 +14,6 @@ Ab Noetic, dieses Paket installieren
 sudo apt-get install liborocos-bfl-dev
 
 
+roslaunch robot_pose_ekf robot_pose_ekf.launch
+
+
