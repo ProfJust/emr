@@ -16,4 +16,43 @@ sudo apt-get install liborocos-bfl-dev
 
 roslaunch robot_pose_ekf robot_pose_ekf.launch
 
+===>  http://wiki.ros.org/robot_pose_ekf/Troubleshooting
+
+
+
+[ERROR] [1623857812.535732903, 485.314000000]: Covariance specified for measurement on topic wheelodom is zero
+
+
+Stimmt, aber wie ändern ????
+
+	header: 
+	  seq: 18579
+	  stamp: 
+	    secs: 632
+	    nsecs: 334000000
+	  frame_id: "odom"
+	child_frame_id: "base_dummy"
+	pose: 
+	  pose: 
+	    position: 
+	      x: -0.05939166817331626
+	      y: -0.0011329516138417874
+	      z: 0.0
+	    orientation: 
+	      x: 0.0
+	      y: 0.0
+	      z: 0.054969975769568816
+	      w: 0.998488007821773
+	  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+	twist: 
+	  twist: 
+	    linear: 
+	      x: -0.009006626147174679
+	      y: -0.0010285264424188777
+	      z: 0.0
+	    angular: 
+	      x: 0.0
+	      y: 0.0
+	      z: 0.018308042186346296
+	  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 

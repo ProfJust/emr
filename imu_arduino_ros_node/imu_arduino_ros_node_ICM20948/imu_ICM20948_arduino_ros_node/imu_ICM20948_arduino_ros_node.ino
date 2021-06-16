@@ -99,7 +99,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.orientation.w =  myOrientQuat.w;
 
   for (int i=0; i<9; i++) {
-    float orient_cov_matrix[9] = {0.01, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+    float orient_cov_matrix[9] = {0.01, 0.01, 0.01,  0.01, 0.01, 0.01,  0.01, 0.01, 0.01}; //diagonal Elements cannot be zero
     imu_msg.orientation_covariance[i] = orient_cov_matrix[i];
   }
 
@@ -117,7 +117,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
  // After 1 meter the covariance is 5 cm, because the robot could be at any point between 95cm and 105cm. 
  // x,y,z, x', y', z',  x'', y'', z''
  for (int i=0; i<9; i++){
-  float ang_vel_cov_matrix[9] = {0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  float ang_vel_cov_matrix[9]  = {0.01, 0.01, 0.01,  0.01, 0.01, 0.01,  0.01, 0.01, 0.01}; //diagonal Elements cannot be zero
   imu_msg.angular_velocity_covariance[i] = ang_vel_cov_matrix[i];
  }
   
@@ -127,7 +127,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.linear_acceleration.z = accel.acceleration.z;   
 
  for (int i=0; i<9; i++){
-  float lin_acc_cov_matrix[9] = {0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0};
+  float lin_acc_cov_matrix[9]  = {0.01, 0.01, 0.01,  0.01, 0.01, 0.01,  0.01, 0.01, 0.01}; //diagonal Elements cannot be zero
   imu_msg.linear_acceleration_covariance[i] = lin_acc_cov_matrix[i];
  }
   
