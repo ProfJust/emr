@@ -17,7 +17,7 @@ sigma_mess = 4; % Standardabweichung Messung (Sensor)
 sigma_move = 2; % Standardabweichung Bewegung (Odometrie)
  
 mu = 0; % Startposition
-sig = 100000; % Unsicherheit der Startposition zu Beginn
+sig = 1000; % Unsicherheit der Startposition zu Beginn
  
 x = [-20:.1:30]; %Wertebereich für die Position
 % Plotten der Normalverteilung

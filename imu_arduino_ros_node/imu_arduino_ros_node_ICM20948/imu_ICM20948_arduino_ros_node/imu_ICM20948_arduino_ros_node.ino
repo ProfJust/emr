@@ -19,9 +19,84 @@
 // gelb     SCL Arduino Nano A5
 // blau     SDA Arduino Nano A4
 //
-// OJ 16.2.21
+
+// Install EKF Filter
+git clone https://github.com/ros-planning/robot_pose_ekf.git
+sudo apt-get install liborocos-bfl-dev
+
+
+// Starten der Nodes
 // $ roscore
-// rosrun rosserial_python serial_node.py /dev/ttyUSB0
+// rosrun rosserial_python serial_node.py /dev/ttyUSB0  /ttyACM0
+// roslaunch robot_pose_ekf robot_pose_ekf.launch 
+// roslaunch emr_worlds youbot_arena.launch
+
+/* remaining ERROR
+ *  [ERROR] [1624289785.492709399, 11.942000000]: Covariance specified for measurement on topic wheelodom is zero
+[ERROR] [1624289785.525946507, 11.976000000]: Covariance specified for measurement on topic wheelodom is zero
+[ERROR] [1624289785.559621173, 12.010000000]: Covariance specified for measurement on topic wheelodom is zero
+[ERROR] [1624289785.568418074, 12.019000000]: filter time older than odom message buffer
+
+
+http://wiki.ros.org/robot_pose_ekf/Troubleshooting
+Covariance specified for measurement on topic xxx is zero
+
+    Each measurement that is processed by the robot pose ekf needs to have a covariance associated with it. 
+    The diagonal elements of the covariance matrix cannot be zero. This error is shown when one of the diagonal elements is zero.
+    Messages with an invalid covariance will not be used to update the filter. 
+
+    
+    
+    ??? im /odom Topic ist die covariance null !!!
+
+     header: 
+  seq: 18076
+  stamp: 
+    secs: 615
+    nsecs: 151000000
+  frame_id: "odom"
+child_frame_id: "base_dummy"
+pose: 
+  pose: 
+    position: 
+      x: -0.061228041569408136
+      y: -0.0012668461805326755
+      z: 0.0
+    orientation: 
+      x: 0.0
+      y: 0.0
+      z: 0.05462127207519089
+      w: 0.9985071440089389
+  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+twist: 
+  twist: 
+    linear: 
+      x: -0.009086312113611161
+      y: -0.0010191169787464576
+      z: 0.0
+    angular: 
+      x: 0.0
+      y: 0.0
+      z: 0.02063455826306626
+  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+---
+
+
+Quelle odom: Gazebo 
+https://answers.ros.org/question/353977/gazebo-change-covariance-matrix/
+
+Hi @MarkusHHN,
+
+Unfortunately, the covariance implementation in that plugin is hard coded, so there is no way to change that.
+
+As I see, you have here two possible solutions:
+
+    Naive approach: You generate a node that subscribes to the odometry from that plugin and change the message covariance values then publish in a new topic and in your control nodes read from this new odometry. This is not a good approach in my honest opinion, but hey, it is there, just for you to know.
+    Implement your own plugin: That will allow you to have control over the covariance values. The libgazebo_ros_planar_move is a model plugin, you can implement your own model plugin which can be based on the implementation of the libgazebo_ros_planar_move. This way you will not only have control over the covarriance values but you will be able to implement things like gaussian error, etc.
+
+
+
+ */
 //----------------------------------------------------------------
 #include <Wire.h>
 #include "Eul2Quat.h"
@@ -99,7 +174,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
   imu_msg.orientation.w =  myOrientQuat.w;
 
   for (int i=0; i<9; i++) {
-    float orient_cov_matrix[9] = {0.01, 0.01, 0.01,  0.01, 0.01, 0.01,  0.01, 0.01, 0.01}; //diagonal Elements cannot be zero
+    float orient_cov_matrix[9] = {0.05, 0.0, 0.0,  0.0, 0.05, 0.00,  0.0, 0.0, 0.05}; //diagonal Elements cannot be zero
     imu_msg.orientation_covariance[i] = orient_cov_matrix[i];
   }
 
@@ -117,7 +192,7 @@ Quaternion myOrientQuat = Eul2Quat(mag.magnetic.x, mag.magnetic.y, mag.magnetic.
  // After 1 meter the covariance is 5 cm, because the robot could be at any point between 95cm and 105cm. 
  // x,y,z, x', y', z',  x'', y'', z''
  for (int i=0; i<9; i++){
-  float ang_vel_cov_matrix[9]  = {0.01, 0.01, 0.01,  0.01, 0.01, 0.01,  0.01, 0.01, 0.01}; //diagonal Elements cannot be zero
+  float ang_vel_cov_matrix[9]  = {0.05, 0.0, 0.0,  0.0, 0.05, 0.00,  0.0, 0.0, 0.05}; //diagonal Elements cannot be zero
   imu_msg.angular_velocity_covariance[i] = ang_vel_cov_matrix[i];
  }
   
