@@ -21,15 +21,17 @@
 //
 
 // Install EKF Filter
-git clone https://github.com/ros-planning/robot_pose_ekf.git
-sudo apt-get install liborocos-bfl-dev
+// git clone https://github.com/ros-planning/robot_pose_ekf.git
+//sudo apt-get install liborocos-bfl-dev
 
 
 // Starten der Nodes
 // $ roscore
-// rosrun rosserial_python serial_node.py /dev/ttyUSB0  /ttyACM0
+// rosrun rosserial_python serial_node.py /dev/ttyACM1
 // roslaunch robot_pose_ekf robot_pose_ekf.launch 
-// roslaunch emr_worlds youbot_arena.launch
+// gazebo roslaunch emr_worlds youbot_arena.launch
+// real robot: roslaunch youbot_driver_ros_interface youbot_driver.launch
+
 
 /* remaining ERROR
  *  [ERROR] [1624289785.492709399, 11.942000000]: Covariance specified for measurement on topic wheelodom is zero
