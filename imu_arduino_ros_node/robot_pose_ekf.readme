@@ -56,3 +56,23 @@ Stimmt, aber wie ändern ????
 	      z: 0.018308042186346296
 	  covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
+Ergebnis: IMU/EKF auf dem youBot im Juli 2021
+
+Das Problem mit den Covariancen wurde gelöst, indem der youBot-Treiber umprogrammiert wurde.
+Die Daten des Sensor ICM20948 werden bereits per ROS-Serial-Node von einem Arduino Mega zur Verfügung gestellt.
+Das ROS-Paket  robot pose ekf, http://wiki.ros.org/robot_pose_ekf publisht leider nur eine Nachricht
+robot_pose_ekf/odom_combined (geometry_msgs/PoseWithCovarianceStamped) 
+Compact Message Definition
+std_msgs/Header header
+geometry_msgs/PoseWithCovariance pose
+die im youBot nicht verwertet werden kann. Dort benötigt das move_base Paket eine Message vom Typ
+nav_msgs/Odometry.msg
+Compact Message Definition
+std_msgs/Header header
+string child_frame_id
+geometry_msgs/PoseWithCovariance pose
+geometry_msgs/TwistWithCovariance twist
+
+Hier fehlen also die Twist-Werte in der Nachricht.
+Die Idee ist nun, entweder einen Node zu programmieren der diese MessageTypes kompatibel macht (es fehlen die Twist-Werte), oder ein anderes Paket wie z.B. das robot_localization Paket zu nutzen. http://docs.ros.org/en/noetic/api/robot_localization/html/index.html
+
